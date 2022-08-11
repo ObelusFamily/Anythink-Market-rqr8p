@@ -36,7 +36,7 @@ const Banner = () => {
           <div>
             <ul>{items && items.map((i) => <li>{i.title}</li>)}</ul>
 
-            {items && items.length === 0 && (
+            {item && items && items.length === 0 && (
               <div id="empty">
                 <div> 😞 </div>
                 <p>No items found for "boring {item}".</p>
