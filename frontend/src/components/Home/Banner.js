@@ -1,25 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import logo from "../../imgs/logo.png";
 import agent from "../../agent";
 
 const Banner = () => {
   const [item, setItem] = useState("");
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState(null);
 
   async function handleChange(itemInput) {
     setItem(itemInput);
+    console.log(item);
 
     if (item?.length > 3) {
       const { items } = await agent.Items.byTitle(item);
-      // const items = await data.json()
       console.log(items);
       setItems(items);
     }
   }
 
-  useEffect(() => {
-    handleChange();
-  }, [item]);
+  // useEffect(() => {
+  //   handleChange();
+  // }, [item]);
 
   return (
     <div className="banner text-white">
@@ -33,9 +33,15 @@ const Banner = () => {
             onChange={(e) => handleChange(e.target.value)}
           />
           <span> the cool stuff.</span>
-          <p>{item}</p>
           <div>
             <ul>{items && items.map((i) => <li>{i.title}</li>)}</ul>
+
+            {items && items.length === 0 && (
+              <div id="no-items-found">
+                <div>😞</div>
+                <p>No items found for "boring {item}".</p>
+              </div>
+            )}
           </div>
         </div>
       </div>
