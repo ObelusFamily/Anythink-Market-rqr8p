@@ -38,7 +38,7 @@ const Banner = () => {
 
             {items && items.length === 0 && (
               <div id="no-items-found">
-                <div>😞</div>
+                <div> 😞 </div>
                 <p>No items found for "boring {item}".</p>
               </div>
             )}
